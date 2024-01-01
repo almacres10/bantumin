@@ -1,0 +1,76 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+
+<h1 class="text-xl font-semibold mt-20 text-center pt-2">Daftar Tiket</h1>
+<div class="flex max-w-7xl mx-auto bg-white p-3 rounded-md shadow-md mt-2">
+    <div class="w-1/4 pr-4 pl-1 py-5">
+        <!-- Menu Filter -->
+        <div class="bg-zinc-100 p-4 rounded-md shadow-md mb-5">
+            <h2 class="text-lg font-semibold mb-2">Filter Tiket</h2>
+            <div class="mb-4">
+                <label for="jenisPermasalahan" class="block text-sm font-semibold mb-2">Jenis Permasalahan</label>
+                <select id="jenisPermasalahan" class="w-full border p-2">
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <!-- Tambahkan opsi filter sesuai kebutuhan -->
+                </select>
+                <label for="jenisPermasalahan" class="block text-sm font-semibold mb-2 pt-2">Tanggal Tiket</label>
+                <input type="date" id="tanggalTiket" class="w-full border p-2">
+
+                <button type="button" class="mt-4 bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-900">Submit</button>
+            </div>            
+        </div>
+    </div>
+
+    <div class="w-3/4">
+        <table class="min-w-full bg-white border border-gray-300 shadow-sm text-sm">
+            <thead>
+                <tr class="bg-teal-600">
+                    <th class="py-2 px-4 border-b border-r text-white">Nama</th>
+                    <th class="py-2 px-4 border-b border-r text-white">Bidang</th>
+                    <th class="py-2 px-4 border-b border-r text-white">Jenis Masalah</th>
+                    <th class="py-2 px-4 border-b border-r text-white">Permasalahan</th>
+                    <th class="py-2 px-4 border-b text-white">Tanggal</th>
+                    <th class="py-2 px-4 border-b text-white">Status Tiket</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tiket in tiket_list %}
+                    <tr>
+                        <td class="py-2 px-4 border-b border-r">{{ tiket.NAMA }}</td>
+                        <td class="py-2 px-4 border-b border-r">{{ tiket.BIDANG }}</td>
+                        <td class="py-2 px-4 border-b border-r">{{ tiket.JENIS_MASALAH }}</td>
+                        <td class="py-2 px-4 border-b border-r">{{ tiket.PERMASALAHAN }}</td>
+                        <td class="py-2 px-4 border-b">{{ tiket.DATE }}</td>
+                        <td class="py-2 px-4 border-b">Sedang diproses</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+            <div class="pagination">
+        <span class="step-links">
+            {% if tiket_list.has_previous %}
+                <a href="?query={{ request.GET.query|urlencode }}&page=1">&laquo; first</a>
+                <a href="?query={{ request.GET.query|urlencode }}&page={{ tiket_list.previous_page_number }}">previous</a>
+            {% endif %}
+      
+            <span class="current">
+                Page {{ tiket_list.number }} of {{ tiket_list.paginator.num_pages }}.
+            </span>
+      
+            {% if tiket_list.has_next %}
+                <a href="?query={{ request.GET.query|urlencode }}&page={{ tiket_list.next_page_number }}">next</a>
+                <a href="?query={{ request.GET.query|urlencode }}&page={{ tiket_list.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+    </div>
+
+</div>
+
+
+{% endblock %}

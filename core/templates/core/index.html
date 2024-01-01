@@ -1,0 +1,63 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<section id="home">
+    <div class="flex justify-center items-center h-screen">
+
+            <div class="">
+                <h1 class="text-base font-semibold text-teal-600 md:text-xl lg:text-2xl">Form
+                    <span class="mt-1 text-4xl block font-bold text-cyan-600">Bantek 050</span>
+                </h1>
+                <h2 class="font-medium text-slate-500 text-lg mb-5">Bantuan Teknis Komputer dan Data  <br>
+                    <span class="text-slate-900 lg:text-sm">Bidang Data dan Pengawasan Potensi Perpajakan</span>
+                </h2>
+                <p class="font-medium text-slate-400 mb-10 leading-relaxed">
+                    Sinergi Kuat, Sumbarja Hebat,
+                    <span class="text-slate-900 font-bold">Kanwil 050 Melesat!!</span>
+                </p>
+            </div>
+
+            <div class="ml-4">
+                <div class="form-container bg-gray-100">
+                    <form method="post" action="{% url 'core:tiketBantek' %}" class="">
+                        {% csrf_token %}
+                        {{ form.as_p|safe }}
+
+                        <div class="flex justify-center">
+                            <button type="submit" class="flex mt-2 py-2 px-8 text-sm bg-teal-600 
+                            text-white rounded-xl hover:bg-teal-900 mx-2">Submit</button>
+                            <button type="reset" class="flex mt-2 py-2 px-8 text-sm bg-rose-600 
+                            text-white rounded-xl hover:bg-rose-900 mx-2">Reset</a>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+       
+    </div>
+</section>
+
+{% comment %} <script>
+    $(document).ready(function () {
+
+        $("#id_bidang_field").change(function () {
+            var selectedBidang = $(this).val();
+            var namaFieldSelect = $("#id_nama_field");
+
+            namaFieldSelect.find("option").filter(function () {
+                return $(this).data("bidang") !== selectedBidang;
+            }).remove();
+        });
+    });
+</script> {% endcomment %}
+
+
+<script>
+    function toggleNightMode() {
+        document.body.classList.toggle('night-mode');
+        document.querySelector('.form-container').classList.toggle('night-mode');
+    }
+</script>
+
+{% endblock %}
