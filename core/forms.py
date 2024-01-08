@@ -15,11 +15,11 @@ BANTEK_CHOICES =(
 )
 
 class BantuanTeknisForm(forms.Form):
-    nama_field = forms.CharField(
+    nama = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'border p-2 rounded-md'}),
         required=True,
     )
-    bidang_field = forms.CharField(
+    bidang = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'border p-2 rounded-md'}),
         required=True,
     )
