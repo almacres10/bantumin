@@ -6,35 +6,38 @@
 
 {% comment %} coldplayKID@ {% endcomment %}
 
-<div class='w-1/2 my-6 mx-auto p-6 bg-gray-100 rounded-xl'>
-    <h1 class="mb-6 text-3xl">Login</h1> 
+<div class='w-1/2 my-6 mt-20 mx-auto p-6 bg-gray-100 rounded-xl flex items-center'>
+    <div class="w-full">
+        <h1 class="mb-6 text-3xl">Login</h1> 
 
-    <form method="post" action="{% url 'core:login' %}">
-        {% csrf_token %}
+        <form method="post" action="{% url 'core:login' %}">
+            {% csrf_token %}
 
-        <div class="mb-3">
-            <label class="inline-block mb-2">Username</label><br>
-            {{ form.username }}
-        </div>
-
-        <div class="mb-3">
-            <label class="inline-block mb-2">Password</label><br>
-            {{ form.password }}
-        </div>
-
-        {% if form.errors %}
-            <div class="mb-3 p-6 bg-red-100 rounded-xl">
-                {% for field, errors in form.errors.items %}
-                    {% for error in errors %}
-                        {{ error }}
-                    {% endfor %}
-                {% endfor %}
+            <div class="mb-3">
+                <label class="inline-block mb-2">Username</label><br>
+                {{ form.username }}
             </div>
-        {% endif %}
 
-        <button class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Login<button>
-    </form>
+            <div class="mb-3">
+                <label class="inline-block mb-2">Password</label><br>
+                {{ form.password }}
+            </div>
+
+            {% if form.errors %}
+                <div class="mb-3 p-6 bg-red-100 rounded-xl">
+                    {% for field, errors in form.errors.items %}
+                        {% for error in errors %}
+                            {{ error }}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <button class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Login</button>
+        </form>
+    </div>
 </div>
+
 
 <div class='w-1/2 my-6 mx-auto p-4 bg-slate-400 hover:bg-slate-900 rounded-xl text-white'>
     <h3 class="text-center">Silakan Login dengan akun anda <br> <h3>

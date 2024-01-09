@@ -46,20 +46,22 @@ def tiketBantek(request):
         form = BantuanTeknisForm(request.POST)
 
         if form.is_valid():
-            nama = form.cleaned_data['nama_field']
-            bidang = form.cleaned_data['bidang_field']
-            jenis_masalah = form.cleaned_data['jenis_permasalahan']
-            permasalahan = form.cleaned_data['permasalahan']
+            nama = form.cleaned_data.get('nama', '')
+            bidang = form.cleaned_data.get('bidang', '')
+            jenis_masalah = form.cleaned_data.get('jenis_permasalahan', '')
+            permasalahan = form.cleaned_data.get('permasalahan', '')
 
             # Simpan data di model
             tiket = Tiket(NAMA=nama, BIDANG=bidang, JENIS_MASALAH=jenis_masalah, PERMASALAHAN=permasalahan)
             tiket.save()
-                
-            return redirect('core:daftarTiket')
 
-    
+            return redirect('core:daftarTiket')
+        else:
+            # Handle the case when the form is not valid
+            print(form.errors)  # Print form errors to the console for debugging
     else:
         form = BantuanTeknisForm()
+
 
 
 def daftarTiket(request):
