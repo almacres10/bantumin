@@ -16,22 +16,26 @@ BANTEK_CHOICES =(
 
 class BantuanTeknisForm(forms.Form):
     nama = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'border p-2 rounded-md'}),
+        widget=forms.TextInput(attrs={'class': 'border p-2 rounded-md', 'style': 'width: 150px;'}),
         required=True,
+        label='Nama',
     )
     bidang = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'border p-2 rounded-md'}),
+        widget=forms.TextInput(attrs={'class': 'border p-2 rounded-md', 'style': 'width: 150px;'}),
         required=True,
+        label='Bidang',
     )
     jenis_permasalahan = forms.ChoiceField(
-        choices= BANTEK_CHOICES,
+        choices=BANTEK_CHOICES,
         label='Jenis Masalah',
         widget=forms.Select(attrs={'class': 'border w-80 p-2 rounded-md'}),
     )
     permasalahan = forms.CharField(
-        widget=forms.Textarea(attrs={'class': 'border p-2 rounded-md'}),
+        widget=forms.Textarea(attrs={'class': 'border p-2 rounded-md', 'style': 'width: 200px; height: 100px;'}),
         required=True,
+        label='Permasalahan',
     )
+
 
 
 class LoginForm(AuthenticationForm):
