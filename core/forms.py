@@ -39,7 +39,7 @@ class BantuanTeknisForm(forms.Form):
 
 
 class LoginForm(AuthenticationForm):
-    nip_pendek = forms.CharField(widget=forms.TextInput(attrs={
+    username = forms.CharField(widget=forms.TextInput(attrs={
         'placeholder': 'NIP Bapak/Ibu',
         'class': 'w-full py-4 px-6 rounded-xl'
     }))
@@ -48,3 +48,4 @@ class LoginForm(AuthenticationForm):
         'placeholder': ' Password',
         'class': 'w-full py-4 px-6 rounded-xl'
     }))
+
