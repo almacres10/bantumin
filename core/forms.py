@@ -16,12 +16,12 @@ BANTEK_CHOICES =(
 
 class BantuanTeknisForm(forms.Form):
     nama = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'border p-2 rounded-md', 'style': 'width: 150px;'}),
+        widget=forms.TextInput(attrs={'class': 'border p-2 rounded-md', 'style': 'height: 50px;'}),
         required=True,
         label='Nama',
     )
     bidang = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'border p-2 rounded-md', 'style': 'width: 150px;'}),
+        widget=forms.TextInput(attrs={'class': 'border p-2 rounded-md', 'style': 'height: 50px;'}),
         required=True,
         label='Bidang',
     )
@@ -31,7 +31,7 @@ class BantuanTeknisForm(forms.Form):
         widget=forms.Select(attrs={'class': 'border w-80 p-2 rounded-md'}),
     )
     permasalahan = forms.CharField(
-        widget=forms.Textarea(attrs={'class': 'border p-2 rounded-md', 'style': 'width: 200px; height: 100px;'}),
+        widget=forms.Textarea(attrs={'class': 'border p-2 rounded-md', 'style': 'height: 100px;'}),
         required=True,
         label='Permasalahan',
     )

@@ -18,8 +18,8 @@
                 </p>
             </div>
 
-            <div class="ml-4">
-                <div class="form-container bg-gray-100">
+            <div class="ml-4 mt-6">
+                <div class="form-container bg-gray-200">
                     <form method="post" action="{% url 'core:tiketBantek' %}" class="">
                         {% csrf_token %}
                         {{ form.as_p|safe }}
