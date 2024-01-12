@@ -11,9 +11,8 @@
         <title>Bantek 050 2024</title>
     </head>
     <body class="bg-zinc-50">
-        {% if request.user.is_authenticated %}
         {% include 'core/navbar.html' %}
-        {% endif %}
+
 
         {% block content %}
         {% endblock %}

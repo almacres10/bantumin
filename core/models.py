@@ -1,6 +1,7 @@
 from django.db import models
 
 # Create your models here.
+
 class Pegawai(models.Model):
     id_pegawai = models.AutoField(primary_key=True, null=False)
     NAMA = models.CharField(max_length=255, null=True)

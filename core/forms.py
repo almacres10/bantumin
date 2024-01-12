@@ -1,7 +1,7 @@
 # forms.py
 from django import forms
 from .models import Pegawai
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 
 
@@ -48,4 +48,3 @@ class LoginForm(AuthenticationForm):
         'placeholder': ' Password',
         'class': 'w-full py-4 px-6 rounded-xl'
     }))
-

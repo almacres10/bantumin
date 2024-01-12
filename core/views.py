@@ -17,7 +17,7 @@ def index(request):
 
 def login_view(request):
     if request.method == 'POST':
-        form = LoginForm(request, request.POST)  # Use your custom LoginForm
+        form = LoginForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
@@ -26,15 +26,15 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, 'Berhasil login.')
-                return redirect('core:formBantek')  # Replace with the desired redirect URL
-            
+                return redirect('core:formBantek')  # Ganti dengan URL redirect yang diinginkan
+
             else:
-                messages.warning(request, 'username atau password anda salah')
+                messages.warning(request, 'username atau password Anda salah')
                 return redirect('core:login_view')
     else:
         form = LoginForm()
 
-    return render(request, 'core/login.html')
+    return render(request, 'core/login.html', {'form': form})
 
 def register(request):
     if request.method == 'POST':
@@ -44,7 +44,7 @@ def register(request):
         password = request.POST['password']
 
         # Buat pengguna baru
-        user = User.objects.create_user(username=username, email=email, password=password)
+        user = User.objects.create_user(username=username, nama=nama, email=email, password=password)
         user.first_name = nama
         user.save()
 
@@ -55,6 +55,11 @@ def register(request):
         return redirect('core:formBantek')
 
     return render(request, 'core/register.html')
+
+def user_logout(request):
+    logout(request)
+    messages.success(request, 'Berhasil logout.')
+    return redirect('core:login_view')
 
 
 def formBantek(request):
