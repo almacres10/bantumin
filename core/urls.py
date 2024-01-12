@@ -4,8 +4,9 @@ from . import views
 app_name = 'core'
 
 urlpatterns = [
-    path('', views.formBantek, name='formBantek'),
-    path('home/', views.login, name='login'),
+    path('home/', views.formBantek, name='formBantek'),
+    path('', views.login_view, name='login_view'),
     path('tiket/', views.tiketBantek, name='tiketBantek'),
     path('tiket/daftar/', views.daftarTiket, name='daftarTiket'),
+    path('register/', views.register, name='register')
 ]

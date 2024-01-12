@@ -4,6 +4,10 @@ from .forms import BantuanTeknisForm, LoginForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+
 
 
 # Create your views here.
@@ -11,7 +15,7 @@ from django.contrib.auth import authenticate, login, logout
 def index(request):
     return render(request, "core/index.html")
 
-def login(request):
+def login_view(request):
     if request.method == 'POST':
         form = LoginForm(request, request.POST)  # Use your custom LoginForm
         if form.is_valid():
@@ -22,15 +26,35 @@ def login(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, 'Berhasil login.')
-                return redirect('core:index')  # Replace with the desired redirect URL
+                return redirect('core:formBantek')  # Replace with the desired redirect URL
             
             else:
                 messages.warning(request, 'username atau password anda salah')
-                return redirect('core:login')
+                return redirect('core:login_view')
     else:
         form = LoginForm()
 
-    return render(request, 'core/login.html', {'form': form})
+    return render(request, 'core/login.html')
+
+def register(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        nama = request.POST['nama']
+        password = request.POST['password']
+
+        # Buat pengguna baru
+        user = User.objects.create_user(username=username, email=email, password=password)
+        user.first_name = nama
+        user.save()
+
+        # # Otentikasi pengguna dan login setelah registrasi
+        # user = authenticate(username=username, password=password)
+        # login(request, user)
+
+        return redirect('core:formBantek')
+
+    return render(request, 'core/register.html')
 
 
 def formBantek(request):
