@@ -106,3 +106,6 @@ def daftarTiket(request):
         page_obj = paginator.page(paginator.num_pages)
 
     return render(request, 'core/tiket.html', {'tiket_list': page_obj})
+
+def deleteTiket(request):
+    pass
