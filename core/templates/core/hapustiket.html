@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<div class="max-w-2xl mx-auto mt-20 p-4">
+  <h2 class="text-xl font-semibold text-center py-2">Apakah Anda yakin ingin menghapus tiket berikut?</h2>
+
+  <div class="flex bg-white p-4 rounded-md shadow-md mt-2">
+      <div class="w-1/2 pr-8">
+          <p class="text-sm"><span class="font-semibold">Nama:</span> {{ tiket.NAMA }}</p>
+          <p class="text-sm"><span class="font-semibold">Bidang:</span> {{ tiket.BIDANG }}</p>
+          <p class="text-sm"><span class="font-semibold">Jenis Masalah:</span> {{ tiket.JENIS_MASALAH }}</p>
+          <p class="text-sm"><span class="font-semibold">Permasalahan:</span> {{ tiket.PERMASALAHAN }}</p>
+          <p class="text-sm"><span class="font-semibold">Tanggal:</span> {{ tiket.DATE }}</p>
+      </div>
+
+      <div class="w-1/2">
+          <form method="post" action="{% url 'core:deleteTiket' tiket.ID %}">
+              {% csrf_token %}
+              <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">Hapus</button>
+              <button type="button" onclick="window.history.back()" class="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600">Batal</button>
+            </form>
+      </div>
+  </div>
+</div>
+
+
+{% endblock %}

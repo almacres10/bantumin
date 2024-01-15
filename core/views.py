@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from .models import Pegawai, Tiket
 from .forms import BantuanTeknisForm, LoginForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -91,8 +91,6 @@ def tiketBantek(request):
     else:
         form = BantuanTeknisForm()
 
-
-
 def daftarTiket(request):
     tiket_list = Tiket.objects.all()
     items_per_page = 10
@@ -107,5 +105,11 @@ def daftarTiket(request):
 
     return render(request, 'core/tiket.html', {'tiket_list': page_obj})
 
-def deleteTiket(request):
-    pass
+def deleteTiket(request, tiket_id):
+    context = {}
+    obj = get_object_or_404(Tiket, ID = tiket_id)
+    if request.method == 'POST':
+        obj.delete()
+        return HttpResponseRedirect("/home")
+    
+    return render(request, "core/hapustiket.html", {'tiket': obj})

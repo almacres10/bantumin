@@ -47,7 +47,7 @@
                         <td class="py-2 px-4 border-b">{{ tiket.DATE }}</td>
                         <td class="py-2 px-4 border-b">Sedang diproses</td>
                         <td class="py-2 px-4 border-b border-r hover:text-red-500">
-                            <a href="{% url 'core:deleteTiket' %}"> Hapus</a></td>
+                            <a href="{% url 'core:deleteTiket' tiket.ID %}"> Hapus</a></td>
                     </tr>
                 {% endfor %}
             </tbody>
