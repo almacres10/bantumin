@@ -6,22 +6,22 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 
 BANTEK_CHOICES =( 
-    ("0", "Pilih Jenis Masalah"), 
-    ("1", "Software"), 
-    ("2", "Hardware"), 
-    ("3", "Jaringan Internet/Intranet"), 
-    ("4", "Join Domain"), 
-    ("5", "Permintaan Data"), 
+    ("Pilih Jenis Masalah", "Pilih Jenis Masalah"), 
+    ("Software", "Software"), 
+    ("Hardware", "Hardware"), 
+    ("Jaringan Internet/Intranet", "Jaringan Internet/Intranet"), 
+    ("Join Domain", "Join Domain"), 
+    ("Permintaan Data", "Permintaan Data"), 
 )
 
 BIDANG_CHOICES =( 
-    ("0", "Pilih Bidang"), 
-    ("1", "Umum"), 
-    ("2", "DP3"), 
-    ("3", "KBP"), 
-    ("4", "P2 Humas"), 
-    ("5", "PPIP"),
-    ("6", "PEP"), 
+    ("Pilih Bidang", "Pilih Bidang"), 
+    ("Umum", "Umum"), 
+    ("DP3", "DP3"), 
+    ("KBP", "KBP"), 
+    ("P2 Humas", "P2 Humas"), 
+    ("PPIP", "PPIP"),
+    ("PEP", "PEP"), 
 )
 
 
