@@ -2,7 +2,6 @@
 
 {% block content %}
 
-
 <h1 class="text-xl font-semibold mt-20 text-center pt-2">Daftar Tiket</h1>
 <div class="flex max-w-7xl mx-auto bg-white p-3 rounded-md shadow-md mt-2">
     <div class="w-1/4 pr-4 pl-1 py-5">
@@ -11,30 +10,34 @@
             <h2 class="text-lg font-semibold mb-2">Filter Tiket</h2>
             <div class="mb-4">
                 <label for="jenisPermasalahan" class="block text-sm font-semibold mb-2">Jenis Permasalahan</label>
-                <select id="jenisPermasalahan" class="w-full border p-2">
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                    <!-- Tambahkan opsi filter sesuai kebutuhan -->
+                <select id="jenisPermasalahan" class="w-full border p-2" onchange="filterData()">
+                    <option value="all">All</option>
+                    <option value="Software">Software</option>
+                    <option value="Hardware">Hardware</option>
+                    <option value="Jaringan Internet/Intranet">Jaringan Internet/Intranet</option>
+                    <option value="Join Domain">Join Domain</option>
+                    <option value="Permintaan Data">Permintaan Data</option>
                 </select>
-                <label for="jenisPermasalahan" class="block text-sm font-semibold mb-2 pt-2">Tanggal Tiket</label>
+
+                <label for="tanggalTiket" class="block text-sm font-semibold mb-2 pt-2">Tanggal Tiket</label>
                 <input type="date" id="tanggalTiket" class="w-full border p-2">
 
-                <button type="button" class="mt-4 bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-900">Submit</button>
+                <!-- <button type="button" onclick="filterData()" class="mt-4 bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-900">Filter</button> -->
             </div>            
         </div>
     </div>
 
     <div class="w-3/4">
-        <table class="min-w-full bg-white border border-gray-300 shadow-sm text-sm">
+        <table id="data-table" class="min-w-full bg-white border border-gray-300 shadow-sm text-sm">
             <thead>
-                <tr class="bg-teal-600">
-                    <th class="py-2 px-4 border-b border-r text-white">Nama</th>
-                    <th class="py-2 px-4 border-b border-r text-white">Bidang</th>
-                    <th class="py-2 px-4 border-b border-r text-white">Jenis Masalah</th>
-                    <th class="py-2 px-4 border-b border-r text-white">Permasalahan</th>
-                    <th class="py-2 px-4 border-b text-white">Tanggal</th>
-                    <th class="py-2 px-4 border-b text-white">Status Tiket</th>
-                    <th class="py-2 px-4 border-b text-white">Tindak Lanjut</th>
+                <tr class="bg-teal-600 text-white">
+                    <th class="py-2 px-4 border-b border-r">Nama</th>
+                    <th class="py-2 px-4 border-b border-r">Bidang</th>
+                    <th class="py-2 px-4 border-b border-r">Jenis Masalah</th>
+                    <th class="py-2 px-4 border-b border-r">Permasalahan</th>
+                    <th class="py-2 px-4 border-b">Tanggal</th>
+                    <th class="py-2 px-4 border-b">Status Tiket</th>
+                    <th class="py-2 px-4 border-b">Tindak Lanjut</th>
                 </tr>
             </thead>
             <tbody>
@@ -53,27 +56,44 @@
             </tbody>
         </table>
 
-            <div class="pagination">
-        <span class="step-links">
-            {% if tiket_list.has_previous %}
-                <a href="?query={{ request.GET.query|urlencode }}&page=1">&laquo; first</a>
-                <a href="?query={{ request.GET.query|urlencode }}&page={{ tiket_list.previous_page_number }}">previous</a>
-            {% endif %}
-      
-            <span class="current">
-                Page {{ tiket_list.number }} of {{ tiket_list.paginator.num_pages }}.
+        <div class="pagination">
+            <span class="step-links">
+                {% if tiket_list.has_previous %}
+                    <a href="?query={{ request.GET.query|urlencode }}&page=1">&laquo; first</a>
+                    <a href="?query={{ request.GET.query|urlencode }}&page={{ tiket_list.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ tiket_list.number }} of {{ tiket_list.paginator.num_pages }}.
+                </span>
+        
+                {% if tiket_list.has_next %}
+                    <a href="?query={{ request.GET.query|urlencode }}&page={{ tiket_list.next_page_number }}">next</a>
+                    <a href="?query={{ request.GET.query|urlencode }}&page={{ tiket_list.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
             </span>
-      
-            {% if tiket_list.has_next %}
-                <a href="?query={{ request.GET.query|urlencode }}&page={{ tiket_list.next_page_number }}">next</a>
-                <a href="?query={{ request.GET.query|urlencode }}&page={{ tiket_list.paginator.num_pages }}">last &raquo;</a>
-            {% endif %}
-        </span>
-    </div>
-
+        </div>
     </div>
 
 </div>
 
+<script>
+    function filterData() {
+
+        var filter = document.getElementById('jenisPermasalahan').value;
+        var table = document.getElementById('data-table');
+        var rows = table.getElementsByTagName('tr');
+
+        for (var i = 1; i < rows.length; i++) {
+            var category = rows[i].getElementsByTagName('td')[2].textContent;
+
+            if (filter === 'all' || category === filter) {
+                rows[i].style.display = '';
+                } else {
+                rows[i].style.display = 'none';
+                }
+            }
+    }
+</script>
 
 {% endblock %}
