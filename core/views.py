@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from .models import Pegawai, Tiket
-from .forms import BantuanTeknisForm, LoginForm
+from .forms import BantuanTeknisForm, LoginForm, TiketForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.urls import reverse
+
 
 
 
@@ -113,3 +115,16 @@ def deleteTiket(request, tiket_id):
         return HttpResponseRedirect("/home")
     
     return render(request, "core/hapustiket.html", {'tiket': obj})
+
+def editTiket(request, tiket_id):
+    tiket = get_object_or_404(Tiket, pk=tiket_id)
+
+    if request.method == 'POST':
+        form = TiketForm(request.POST, instance=tiket)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('core:daftarTiket'))  # Ganti dengan URL yang sesuai
+    else:
+        form = TiketForm(instance=tiket)
+
+    return render(request, 'core/edittiket.html', {'form': form, 'tiket': tiket})

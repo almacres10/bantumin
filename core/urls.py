@@ -9,5 +9,6 @@ urlpatterns = [
     path('tiket/daftar/', views.daftarTiket, name='daftarTiket'),
     path('register/', views.register, name='register'),
     path('logout/', views.user_logout, name='user_logout'),
-    path('delete/tiket/<int:tiket_id>/', views.deleteTiket, name='deleteTiket')
+    path('delete/tiket/<int:tiket_id>/', views.deleteTiket, name='deleteTiket'),
+    path('edit/tiket/<int:tiket_id>/', views.editTiket, name='editTiket')
 ]

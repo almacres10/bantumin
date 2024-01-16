@@ -1,6 +1,6 @@
 # forms.py
 from django import forms
-from .models import Pegawai
+from .models import Pegawai, Tiket
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 
@@ -60,3 +60,8 @@ class LoginForm(AuthenticationForm):
         'placeholder': ' Password',
         'class': 'w-full py-4 px-6 rounded-xl'
     }))
+
+class TiketForm(forms.ModelForm):
+    class Meta:
+        model = Tiket
+        exclude = ['DATE']

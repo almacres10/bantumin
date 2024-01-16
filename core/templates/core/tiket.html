@@ -1,5 +1,7 @@
 {% extends 'core/base.html' %}
 
+{% load static %}
+
 {% block content %}
 
 <h1 class="text-xl font-semibold mt-20 text-center pt-2">Daftar Tiket</h1>
@@ -50,7 +52,12 @@
                         <td class="py-2 px-4 border-b">{{ tiket.DATE }}</td>
                         <td class="py-2 px-4 border-b">Sedang diproses</td>
                         <td class="py-2 px-4 border-b border-r hover:text-red-500">
-                            <a href="{% url 'core:deleteTiket' tiket.ID %}"> Hapus</a></td>
+                        <a class="text-3xl font-bold leading-none" href="{% url 'core:deleteTiket' tiket.ID %}">
+                            <img class="w-3 md:w-5 lg:w-7 mx-auto" src="{% static 'img/trash.png' %}" alt="logo">
+                        </a>
+                        <a class="text-3xl font-bold leading-none" href="{% url 'core:editTiket' tiket.ID %}">
+                            <img class="w-3 md:w-5 lg:w-7 mx-auto" src="{% static 'img/pen.png' %}" alt="logo">
+                        </a></td>
                     </tr>
                 {% endfor %}
             </tbody>
