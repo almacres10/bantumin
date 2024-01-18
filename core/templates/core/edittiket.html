@@ -2,34 +2,34 @@
 {% extends 'core/base.html' %}
 
 {% block content %}
-  <h1 class="text-xl font-semibold mt-20 text-center pt-2">Edit Tiket</h1>
-  <div class="max-w-2xl mx-auto bg-white p-8 rounded-md shadow-md mt-2">
+  <h1 class="text-3xl font-semibold text-center mt-8 mb-4">Edit Tiket</h1>
+  <div class="max-w-md mx-auto bg-white p-6 rounded-md shadow-md mt-2">
     <form method="post" class="space-y-4">
       {% csrf_token %}
       
       <div>
-        <label for="{{ form.NAMA.id_for_label }}" class="block text-sm font-semibold mb-2">Nama</label>
+        <label for="{{ form.NAMA.id_for_label }}" class="block text-sm font-semibold mb-1">Nama</label>
         {{ form.NAMA }}
       </div>
 
       <div>
-        <label for="{{ form.BIDANG.id_for_label }}" class="block text-sm font-semibold mb-2">Bidang</label>
+        <label for="{{ form.BIDANG.id_for_label }}" class="block text-sm font-semibold mb-1">Bidang</label>
         {{ form.BIDANG }}
       </div>
 
       <div>
-        <label for="{{ form.JENIS_MASALAH.id_for_label }}" class="block text-sm font-semibold mb-2">Jenis Masalah</label>
+        <label for="{{ form.JENIS_MASALAH.id_for_label }}" class="block text-sm font-semibold mb-1">Jenis Masalah</label>
         {{ form.JENIS_MASALAH }}
       </div>
 
       <div>
-        <label for="{{ form.PERMASALAHAN.id_for_label }}" class="block text-sm font-semibold mb-2">Permasalahan</label>
+        <label for="{{ form.PERMASALAHAN.id_for_label }}" class="block text-sm font-semibold mb-1">Permasalahan</label>
         {{ form.PERMASALAHAN }}
       </div>
 
-      <div class="flex items-center">
-        <button type="submit" class="bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-900">Simpan Perubahan</button>
-        <a href="{% url 'core:daftarTiket' %}" class="text-gray-600 ml-2 hover:text-gray-800">Batal</a>
+      <div class="flex items-center justify-between mt-4">
+        <button type="submit" class="bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-900 focus:outline-none focus:shadow-outline-teal active:bg-teal-800">Simpan Perubahan</button>
+        <a href="{% url 'core:daftarTiket' %}" class="text-gray-600 hover:text-gray-800">Batal</a>
       </div>
     </form>
   </div>
