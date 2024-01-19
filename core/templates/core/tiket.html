@@ -40,6 +40,7 @@
                     <th class="py-2 px-4 border-b">Tanggal</th>
                     <th class="py-2 px-4 border-b">Status Tiket</th>
                     <th class="py-2 px-4 border-b">Tindak Lanjut</th>
+                    <th class="py-2 px-4 border-b">Respon Adsis</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,7 +50,7 @@
                         <td class="py-2 px-4 border-b border-r">{{ tiket.BIDANG }}</td>
                         <td class="py-2 px-4 border-b border-r">{{ tiket.JENIS_MASALAH }}</td>
                         <td class="py-2 px-4 border-b border-r">{{ tiket.PERMASALAHAN }}</td>
-                        <td class="py-2 px-4 border-b">{{ tiket.DATE }}</td>
+                        <td class="py-2 px-4 border-b">{{ tiket.DATE|date:"d/m/Y" }}</td>
                         <td class="py-2 px-4 border-b">Sedang diproses</td>
                         <td class="py-2 px-4 border-b border-r hover:text-red-500">
                         <a class="text-3xl font-bold leading-none" href="{% url 'core:deleteTiket' tiket.ID %}">
@@ -58,6 +59,7 @@
                         <a class="text-3xl font-bold leading-none" href="{% url 'core:editTiket' tiket.ID %}">
                             <img class="w-3 md:w-5 lg:w-7 mx-auto" src="{% static 'img/pen.png' %}" alt="logo">
                         </a></td>
+                        <td class="py-2 px-4 border-b"></td>
                     </tr>
                 {% endfor %}
             </tbody>

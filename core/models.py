@@ -18,3 +18,6 @@ class Tiket(models.Model):
     JENIS_MASALAH = models.CharField(max_length=255, null=False)
     PERMASALAHAN = models.TextField(null=False)
     DATE = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.NAMA} - {self.DATE.strftime("%d/%m/%Y")}'
